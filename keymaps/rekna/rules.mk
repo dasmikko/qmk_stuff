@@ -1,5 +1,7 @@
 BOOTLOADER = caterina
 
+
+RAW_ENABLE = yes
 OLED_ENABLE = yes
 WPM_ENABLE = yes
 OLED_DRIVER = SSD1306   # Enables the use of OLED displays
