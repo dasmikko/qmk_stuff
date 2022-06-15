@@ -13,6 +13,10 @@ Copy the `rekna` folder to the keymaps folder for the kyria keyboard, and flash 
 
 Will make an install script.
 
+## Features
+The keymap contains code for showing a funny little animated bongocat, that shows you your current WPM.
+You can enable it in the `config.h` file.
+
 ## Layers
 There is 6 layers in total: Main, Nav, Synbol, Function, Adjust and Gaming. I've placed the layer buttons in the thumb region for easy access.
 
