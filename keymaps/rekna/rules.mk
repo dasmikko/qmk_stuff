@@ -1,6 +1,6 @@
 BOOTLOADER = caterina
 
-
+VIA_ENABLE = no
 RAW_ENABLE = yes
 OLED_ENABLE = yes
 WPM_ENABLE = yes
