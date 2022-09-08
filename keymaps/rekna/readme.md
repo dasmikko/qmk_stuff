@@ -9,9 +9,22 @@ It uses Danish layout, so it includes ÆØÅ.
 I personally use it daily, and find it very intuitive.
 
 ## Installation
-Copy the `rekna` folder to the keymaps folder for the kyria keyboard, and flash it.
+Just run the install.sh file.
 
-Will make an install script.
+It expects the `qmk_firmware` folder to be in the root of your home folder.
+
+If you want to make it fast and easy to compile and flash run following commands:
+
+```
+qmk config user.keyboard=splitkb/kyria/rev2
+qmk config user.keymap=rekna
+```
+
+Then compile the firmware with `qmk compile` and flash with `qmk flash`
+
+Tap the reset button once while plugged in.
+
+Firmware should be flashed now.
 
 ## Features
 The keymap contains code for showing a funny little animated bongocat, that shows you your current WPM.

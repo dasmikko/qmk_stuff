@@ -18,7 +18,7 @@ enum layers {
 
 // Aliases for readability
 #define QWERTY   DF(_QWERTY)
-#define GAMING  DF(_GAMING)
+#define GAMING   DF(_GAMING)
 #define DVORAK   DF(_DVORAK)
 
 #define SYM      MO(_SYM)
@@ -26,8 +26,8 @@ enum layers {
 #define NAV      MO(_NAV)
 #define FKEYS    MO(_FUNCTION)
 #define ADJUST   MO(_ADJUST)
-#define TGAMING  TG(_GAMING)
-#define TFKEYS   TG(_FUNCTION)
+#define TGAMING  TT(_GAMING)
+#define TFKEYS   TT(_FUNCTION)
 
 #define CTL_ESC  MT(MOD_LCTL, KC_ESC)
 #define CTL_QUOT MT(MOD_RCTL, KC_QUOTE)

@@ -2,4 +2,4 @@
 
 cwd=$(pwd)
 
-ln -sf "$cwd/rekna/" "/home/mjensen/qmk_firmware/keyboards/splitkb/kyria/keymaps/"
+ln -sf "$cwd/rekna/" "/home/$USER/qmk_firmware/keyboards/splitkb/kyria/keymaps/"
