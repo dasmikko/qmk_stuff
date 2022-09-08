@@ -32,6 +32,11 @@
 #define TAPPING_TOGGLE 3
 
 
+#define TAPPING_TERM 175 // Milliseconds
+#define TAPPING_TERM_PER_KEY
+
+
+
 
 //#define BONGOCAT_ENABLE
 

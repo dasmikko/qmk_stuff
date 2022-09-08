@@ -4,6 +4,73 @@
     #include <bongocat.h>
 #endif
 
+enum {
+    TD_ESC_CAPS,
+    CT_CLN,
+    TD_A_AA,
+    TD_O_OE,
+    TD_E_AE,
+};
+
+// Tap dance tap and hold implementation
+
+typedef struct {
+    uint16_t tap;
+    uint16_t hold;
+    uint16_t held;
+} tap_dance_tap_hold_t;
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    qk_tap_dance_action_t *action;
+
+    switch (keycode) {
+        case TD(TD_A_AA):  // list all tap dance keycodes with tap-hold configurations
+        case TD(TD_O_OE):
+        case TD(TD_E_AE):
+            action = &tap_dance_actions[TD_INDEX(keycode)];
+            if (!record->event.pressed && action->state.count && !action->state.finished) {
+                tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
+                tap_code16(tap_hold->tap);
+            }
+    }
+    return true;
+}
+
+void tap_dance_tap_hold_finished(qk_tap_dance_state_t *state, void *user_data) {
+    tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
+
+    if (state->pressed) {
+        if (state->count == 1
+#ifndef PERMISSIVE_HOLD
+            && !state->interrupted
+#endif
+        ) {
+            register_code16(tap_hold->hold);
+            tap_hold->held = tap_hold->hold;
+        } else {
+            register_code16(tap_hold->tap);
+            tap_hold->held = tap_hold->tap;
+        }
+    }
+}
+
+void tap_dance_tap_hold_reset(qk_tap_dance_state_t *state, void *user_data) {
+    tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
+
+    if (tap_hold->held) {
+        unregister_code16(tap_hold->held);
+        tap_hold->held = 0;
+    }
+}
+
+#define ACTION_TAP_DANCE_TAP_HOLD(tap, hold) \
+    { .fn = {NULL, tap_dance_tap_hold_finished, tap_dance_tap_hold_reset}, .user_data = (void *)&((tap_dance_tap_hold_t){tap, hold, 0}), }
+
+
+
+
+
+
 enum layers {
     _QWERTY = 0,
     _GAMING,
@@ -34,17 +101,32 @@ enum layers {
 #define CTL_MINS MT(MOD_RCTL, KC_MINUS)
 #define ALT_ENT  MT(MOD_LALT, KC_ENT)
 
+
+
+// Tap Dance declarations
+
+// Tap Dance definitions
+qk_tap_dance_action_t tap_dance_actions[] = {
+    // Tap once for Escape, twice for Caps Lock
+    [CT_CLN] = ACTION_TAP_DANCE_TAP_HOLD(KC_COLN, KC_SCLN),
+    [TD_A_AA] = ACTION_TAP_DANCE_TAP_HOLD(KC_A, KC_LBRC),
+    [TD_O_OE] = ACTION_TAP_DANCE_TAP_HOLD(KC_O, KC_QUOT),
+};
+
+
 // Note: LAlt/Enter (ALT_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
 // The notation `mod/tap` denotes a key that activates the modifier `mod` when held down, and
 // produces the key `tap` when tapped (i.e. pressed and released).
 
+/* MT(MOD_RALT, KC_ESC) */
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_QWERTY] = LAYOUT(
-        KC_TAB  ,  KC_Q  , KC_W  , KC_E    ,  KC_R     ,  KC_T          ,                                                                                   KC_Y   ,  KC_U     ,  KC_I     ,  KC_O     ,  KC_P     ,  KC_BSPC, 
-        KC_LSFT ,  KC_A  , KC_S  , KC_D    ,  KC_F     ,  KC_G          ,                                                                                   KC_H   ,  KC_J     ,  KC_K     ,  KC_L     ,  KC_SCLN  ,  KC_ENT, 
-        KC_LCTL ,  KC_Z  , KC_X  , KC_C    ,  KC_V     ,  KC_B          ,  KC_LEFT , KC_RGHT   ,                         KC_UP  ,  KC_DOWN               ,  KC_N   ,  KC_M     ,  KC_COMM  ,  KC_DOT   ,  KC_SLSH  ,  KC_RCTL, 
-                                   KC_LGUI ,  KC_LALT  ,  MO(_SYM_ALT)  ,  KC_SPC  , NAV       ,                         SYM    ,  MT(MOD_RALT, KC_ESC)  ,  FKEYS  ,  TGAMING  ,  TFKEYS
+        KC_TAB  ,  KC_Q          , KC_W    ,  KC_E   ,  KC_R          ,  KC_T          ,                                                                                   KC_Y     ,  KC_U     ,  KC_I     ,  TD(TD_O_OE)  ,  KC_P     ,  KC_BSPC, 
+        KC_LSFT ,  TD(TD_A_AA)   , KC_S    ,  KC_D          ,  KC_F          ,  KC_G          ,                                                                                   KC_H     ,  KC_J     ,  KC_K     ,  KC_L         ,  KC_SCLN  ,  KC_ENT, 
+        KC_LCTL ,  KC_Z  , KC_X  , KC_C    ,  KC_V          ,  KC_B          ,  KC_LEFT       ,  KC_RGHT   ,                         KC_UP  ,  KC_DOWN               ,  KC_N   ,  KC_M     ,  KC_COMM  ,  KC_DOT   ,  KC_SLSH      ,  KC_RCTL, 
+                                   KC_LGUI ,  KC_LALT       ,  MO(_SYM_ALT)  ,  KC_SPC        ,  NAV       ,                         SYM    ,  MT(MOD_RALT, KC_ESC)  ,  FKEYS  ,  TGAMING  ,  TFKEYS
     ),
     [_GAMING] = LAYOUT(
         KC_GRV  ,  KC_1     , KC_2  ,  KC_3  ,  KC_4  ,  KC_5  ,                                                           KC_6  ,  KC_7     ,  KC_8     ,  KC_9     ,  KC_0   ,  KC_BSPC, 
