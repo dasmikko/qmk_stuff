@@ -29,7 +29,7 @@
 #define NO_MUSIC_MODE
 #define LAYER_STATE_16BIT
 
-#define TAPPING_TOGGLE 3
+#define TAPPING_TOGGLE 2
 
 
 #define TAPPING_TERM 175 // Milliseconds
