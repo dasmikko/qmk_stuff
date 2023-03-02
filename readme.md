@@ -9,18 +9,13 @@ It uses Danish layout, so it includes ÆØÅ.
 I personally use it daily, and find it very intuitive.
 
 ## Installation
-Just run the install.sh file.
+Clone the repo into `qmk_firmware/keyboards/splitkb/rev2/keymaps/` with the following command:
 
-It expects the `qmk_firmware` folder to be in the root of your home folder.
+`git clone https://github.com/dasmikko/qmk_stuff.git rekna`
 
-If you want to make it fast and easy to compile and flash run following commands:
+To compile and flash the keymap run the following command inside the qmk_firmware folder:
 
-```
-qmk config user.keyboard=splitkb/kyria/rev2
-qmk config user.keymap=rekna
-```
-
-Then compile the firmware with `qmk compile` and flash with `qmk flash`
+`./util/docker_build.sh splitkb/kyria/rev2:rekna:flash`
 
 Tap the reset button once while plugged in.
 
