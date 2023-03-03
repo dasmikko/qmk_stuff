@@ -206,6 +206,9 @@ bool oled_task_user(void) {
             case _GAMING:
                 oled_write_P(PSTR("Gamer TM\n"), false);
                 break;
+            case _ALT:
+                oled_write_P(PSTR("Numpad\n"), false);
+                break;
             default:
                 oled_write_P(PSTR("Undefined\n"), false);
         }
