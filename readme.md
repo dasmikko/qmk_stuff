@@ -9,7 +9,7 @@ It uses Danish layout, so it includes ÆØÅ.
 I personally use it daily, and find it very intuitive.
 
 ## Installation
-Clone the repo into `qmk_firmware/keyboards/splitkb/rev2/keymaps/` with the following command:
+Clone the repo into `qmk_firmware/keyboards/splitkb/keymaps/` with the following command:
 
 `git clone https://github.com/dasmikko/qmk_stuff.git rekna`
 
