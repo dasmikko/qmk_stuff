@@ -118,6 +118,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS       ,  KC_F1  ,  KC_F2   ,  KC_F3    ,  KC_F4    ,  KC_TRNS  ,  KC_TRNS  ,  KC_LALT  ,                            KC_LSFT  ,  KC_TRNS  ,  KC_P1  ,  KC_P2      ,  KC_P3    ,  KC_PENT  ,  KC_TRNS  ,  KC_RCTL  , 
                                               KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,                            KC_LCTL  ,  KC_TRNS  ,  KC_P0  ,  KC_KP_DOT  ,  KC_DOT
     ),
+
+/*
+ * Base Layer: Function Layer
+ *
+ * ,----------------------------------------------------------------------.                                       ,----------------------------------------------------.
+ * |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS         |  LSFT + PGUP     |                                       |  INS   |  HOME  |  PGUP  |  PAUS  |  LBRC  |  TRNS  |
+ * |--------+--------+--------+--------+---------------+------------------|                                       |--------+--------+--------+--------+--------+--------|
+ * |  TRNS  |  LGUI  |  LALT  |  LCTL  |  LSFT         |  LSFT + PGDN     |                                       |  DEL   |  END   |  PGDN  |  SCLN  |  QUOT  |  TRNS  |
+ * |--------+--------+--------+--------+---------------+------------------+---------------.     ,-----------------+--------+--------+--------+--------+--------+--------|
+ * |  TRNS  |  TRNS  |  NUM   |  CAPS  |  LSFT + HOME  |  LSFT + KC_HOME  |  G      |  H  |     |  HOME  |  PGUP  |  END   |  MPRV  |  MPLY  |  MNXT  |  TRNS  |  PSCR  |
+ * `--------------------------+--------+---------------+------------------+---------+-----|     |--------+--------+--------+--------+--------+--------------------------'
+ *                            |  TRNS  |  TRNS         |  C               |  Space  |  V  |     |  TRNS  |  PGDN  |  MUTE  |  VOLD  |  VOLU  |
+ *                            `-----------------------------------------------------------'     `--------------------------------------------'
+ */
+
+
+
     [_NAV] = LAYOUT(
         KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  , KC_TRNS  ,  KC_TRNS        ,  LSFT(KC_PGUP)  ,                                                              KC_INS   ,  KC_HOME  ,  KC_PGUP  ,  KC_PAUS  ,  KC_LBRC  ,  KC_TRNS, 
         KC_TRNS  ,  KC_LGUI  ,  KC_LALT  , KC_LCTL  ,  KC_LSFT        ,  LSFT(KC_PGDN)  ,                                                              KC_DEL   ,  KC_END   ,  KC_PGDN  ,  KC_SCLN  ,  KC_QUOT  ,  KC_TRNS, 
@@ -130,11 +147,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSFT  ,  KC_NUBS     ,  RALT(KC_2)  ,  RALT(KC_3)  ,  RALT(KC_4)  ,  LSFT(KC_6)  ,  KC_TRNS  ,  KC_TRNS  ,                                           KC_TRNS  ,  KC_RCBR  ,  RALT(KC_7)  ,  RALT(KC_0)  ,  RALT(KC_8)  ,  RALT(KC_9)  ,  KC_SLSH  ,  KC_TRNS,  
                                                   KC_TRNS     ,  KC_TRNS     ,  KC_TRNS     ,  KC_TRNS  ,  KC_TRNS  ,                                           KC_TRNS  ,  KC_TRNS  ,  KC_TRNS     ,  KC_RALT     ,  KC_TRNS
     ),
+
+/*
+ * Base Layer: Function Layer
+ *
+ * ,-------------------------------------------------.                                         ,----------------------------------------------------.
+ * |  TAB  |  F9  |  F10  |  F11   |  F12   |  TRNS  |                                         |  NUM7  |  NUM8  |  NUM9  |  /    |   *    |  Bksp  |
+ * |-------+------+-------+--------+--------+--------|                                         |--------+--------+--------+-------+--------+--------|
+ * |  TRNS |  F5  |  F6   |  F7    |  F8    |  TRNS  |                                         |  NUM4  |  NUM5  |  NUM6  |   +   |  .     |  Enter |
+ * |-------+------+-------+--------+--------+--------+---------------.     ,-------------------+--------+--------+--------+-------+--------+--------|
+ * |  TRNS |  F1  |  F2   |  F3    |  F4    |  F     |  G      |  H  |     |  LSFT   |  TRNS   |  NUM1  |  NUM2  |  NUM3  | Enter |  TRNS  |  RCTL  |
+ * `----------------------+--------+--------+--------+---------+-----|     |---------+---------+--------+--------+--------+-------------------------'
+ *                        |  TRNS  |  TRNS  |  C     |  Space  |  V  |     |  LCTL   |  TRNS   |  NUM0  |  ,     |    .   |
+ *                        `------------------------------------------'     `----------------------------------------------'
+ */
+
     [_FUNCTION] = LAYOUT(
-        KC_TAB   ,  KC_F9  ,  KC_F10  ,  KC_F11   ,  KC_F12   ,  KC_TRNS  ,                                                                            KC_P7  ,  KC_P8    ,  KC_P9    ,  KC_PSLS  ,  KC_PAST  ,  KC_PMNS  ,  
-        KC_TRNS  ,  KC_F5  ,  KC_F6   ,  KC_F7    ,  KC_F8    ,  KC_TRNS  ,                                                                            KC_P4  ,  KC_P5    ,  KC_P6    ,  KC_PPLS  ,  KC_PCMM  ,  KC_PEQL  ,  
-        KC_TRNS  ,  KC_F1  ,  KC_F2   ,  KC_F3    ,  KC_F4    ,  KC_TRNS  ,  KC_TRNS  ,  KC_LALT  ,                            KC_LSFT  ,  KC_TRNS  ,  KC_P1  ,  KC_P2    ,  KC_P3    ,  KC_PENT  ,  KC_TRNS  ,  KC_RCTL  , 
-                                         KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,                            KC_LCTL  ,  KC_TRNS  ,  KC_P0  ,  KC_TRNS  ,  KC_TRNS
+        KC_TAB   ,  KC_F9  ,  KC_F10  ,  KC_F11   ,  KC_F12   ,  KC_TRNS  ,                                                                            KC_P7  ,  KC_P8      ,  KC_P9    ,  KC_PSLS  ,  KC_PAST  ,  KC_PMNS  ,  
+        KC_TRNS  ,  KC_F5  ,  KC_F6   ,  KC_F7    ,  KC_F8    ,  KC_TRNS  ,                                                                            KC_P4  ,  KC_P5      ,  KC_P6    ,  KC_PPLS  ,  KC_PCMM  ,  KC_PEQL  ,  
+        KC_TRNS  ,  KC_F1  ,  KC_F2   ,  KC_F3    ,  KC_F4    ,  KC_TRNS  ,  KC_TRNS  ,  KC_LALT  ,                            KC_LSFT  ,  KC_TRNS  ,  KC_P1  ,  KC_P2      ,  KC_P3    ,  KC_PENT  ,  KC_TRNS  ,  KC_RCTL  , 
+                                         KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,                            KC_LCTL  ,  KC_TRNS  ,  KC_P0  ,  KC_KP_DOT  ,  KC_DOT
     ),
     [_ADJUST] = LAYOUT(
         KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  DF(0)    ,  KC_TRNS  ,  KC_TRNS  ,                                                                            KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS   ,  KC_TRNS  ,  
