@@ -120,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
 /*
- * Base Layer: Function Layer
+ * Base Layer: Navigation Layer
  *
  * ,----------------------------------------------------------------------.                                       ,----------------------------------------------------.
  * |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS         |  LSFT + PGUP     |                                       |  INS   |  HOME  |  PGUP  |  PAUS  |  LBRC  |  TRNS  |
