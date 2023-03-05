@@ -125,9 +125,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,----------------------------------------------------------------------.                                       ,----------------------------------------------------.
  * |  TRNS  |  TRNS  |  TRNS  |  TRNS  |  TRNS         |  LSFT + PGUP     |                                       |  INS   |  HOME  |  PGUP  |  PAUS  |  LBRC  |  TRNS  |
  * |--------+--------+--------+--------+---------------+------------------|                                       |--------+--------+--------+--------+--------+--------|
- * |  TRNS  |  LGUI  |  LALT  |  LCTL  |  LSFT         |  LSFT + PGDN     |                                       |  DEL   |  END   |  PGDN  |  SCLN  |  QUOT  |  TRNS  |
+ * |  TRNS  |  LGUI  |  LALT  |  KC_MS_UP  |  LSFT         |  LSFT + PGDN     |                                       |  DEL   |  END   |  PGDN  |  SCLN  |  QUOT  |  TRNS  |
  * |--------+--------+--------+--------+---------------+------------------+---------------.     ,-----------------+--------+--------+--------+--------+--------+--------|
- * |  TRNS  |  TRNS  |  NUM   |  CAPS  |  LSFT + HOME  |  LSFT + KC_HOME  |  G      |  H  |     |  HOME  |  PGUP  |  END   |  MPRV  |  MPLY  |  MNXT  |  TRNS  |  PSCR  |
+ * |  TRNS  |  TRNS  |  NUM   |  KC_MS_DOWN  |  LSFT + HOME  |  LSFT + KC_HOME  |  G      |  H  |     |  HOME  |  PGUP  |  END   |  MPRV  |  MPLY  |  MNXT  |  TRNS  |  PSCR  |
  * `--------------------------+--------+---------------+------------------+---------+-----|     |--------+--------+--------+--------+--------+--------------------------'
  *                            |  TRNS  |  TRNS         |  C               |  Space  |  V  |     |  TRNS  |  PGDN  |  MUTE  |  VOLD  |  VOLU  |
  *                            `-----------------------------------------------------------'     `--------------------------------------------'
@@ -136,10 +136,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
     [_NAV] = LAYOUT(
-        KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  , KC_TRNS  ,  KC_TRNS        ,  LSFT(KC_PGUP)  ,                                                              KC_INS   ,  KC_HOME  ,  KC_PGUP  ,  KC_PAUS  ,  KC_LBRC  ,  KC_TRNS, 
-        KC_TRNS  ,  KC_LGUI  ,  KC_LALT  , KC_LCTL  ,  KC_LSFT        ,  LSFT(KC_PGDN)  ,                                                              KC_DEL   ,  KC_END   ,  KC_PGDN  ,  KC_SCLN  ,  KC_QUOT  ,  KC_TRNS, 
-        KC_TRNS  ,  KC_TRNS  ,  KC_NUM   , KC_CAPS  ,  LSFT(KC_HOME)  ,  LSFT(KC_END)   ,  KC_HOME  ,  KC_END   ,              KC_HOME  ,  KC_PGUP  ,  KC_END   ,  KC_MPRV  ,  KC_MPLY  ,  KC_MNXT  ,  KC_TRNS  ,  KC_PSCR,
-                                           KC_TRNS  ,  KC_TRNS        ,  KC_TRNS        ,  KC_TRNS  ,  KC_TRNS  ,              KC_TRNS  ,  KC_PGDN  ,  KC_MUTE  ,  KC_VOLD  ,  KC_VOLU
+        KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  , KC_TRNS     ,  KC_TRNS     ,  LSFT(KC_PGUP)  ,                                                              KC_INS   ,  KC_HOME  ,  KC_PGUP  ,  KC_PAUS  ,  KC_LBRC  ,  KC_TRNS, 
+        KC_TRNS  ,  KC_LGUI  ,  KC_LALT  , KC_MS_BTN1  ,  KC_MS_UP    ,  KC_MS_BTN2  ,                                                              KC_DEL   ,  KC_END   ,  KC_PGDN  ,  KC_SCLN  ,  KC_QUOT  ,  KC_TRNS, 
+        KC_TRNS  ,  KC_TRNS  ,  KC_NUM   , KC_MS_LEFT  ,  KC_MS_DOWN  ,  KC_MS_RIGHT   ,  KC_HOME  ,  KC_END   ,              KC_HOME  ,  KC_PGUP  ,  KC_END   ,  KC_MPRV  ,  KC_MPLY  ,  KC_MNXT  ,  KC_TRNS  ,  KC_PSCR,
+                                           KC_TRNS     ,  KC_TRNS     ,  KC_TRNS        ,  KC_TRNS  ,  KC_TRNS  ,              KC_TRNS  ,  KC_PGDN  ,  KC_MUTE  ,  KC_VOLD  ,  KC_VOLU
     ),
     [_SYM] = LAYOUT(
         KC_GRV   ,  KC_1        ,  KC_2        ,  KC_3        ,  KC_4        ,  KC_5,                                                                                                   KC_6        ,  KC_7        ,  KC_8        ,  KC_9        ,  KC_0     ,  KC_MINS, 
@@ -159,7 +159,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |  TRNS |  F1  |  F2   |  F3    |  F4    |  F     |  G      |  H  |     |  LSFT   |  TRNS   |  NUM1  |  NUM2  |  NUM3  | Enter |  TRNS  |  RCTL  |
  * `----------------------+--------+--------+--------+---------+-----|     |---------+---------+--------+--------+--------+-------------------------'
  *                        |  TRNS  |  TRNS  |  C     |  Space  |  V  |     |  LCTL   |  TRNS   |  NUM0  |  ,     |    .   |
- *                        `------------------------------------------'     `----------------------------------------------'
+ *                        `------------------------------------------'     i`----------------------------------------------'
  */
 
     [_FUNCTION] = LAYOUT(
