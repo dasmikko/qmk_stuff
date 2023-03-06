@@ -31,6 +31,18 @@
 
 #define TAPPING_TOGGLE 2
 
+// Inertia mouse keys
+// #define MOUSEKEY_INERTIA true
+// #define MOUSEKEY_INTERVAL 16
+// #define MOUSEKEY_DELAY 150  
+// #define MOUSEKEY_MAX_SPEED 32
+// #define MOUSEKEY_TIME_TO_MAX 32
+// #define MOUSEKEY_FRICTION 24
+// #define MOUSEKEY_MOVE_DELTA 2
+
+
+// Accelerated mouse keys
+#define MOUSEKEY_TIME_TO_MAX 50
 
 #define TAPPING_TERM 175 // Milliseconds
 #define TAPPING_TERM_PER_KEY
