@@ -62,7 +62,6 @@ combo_t key_combos[] = {
   [COMBO_MOUSE] = COMBO(mouse_combo, MO(_FUNCTION)),
 };
 
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case SS_ARROW_FUNC:
