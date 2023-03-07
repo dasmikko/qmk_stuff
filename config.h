@@ -29,6 +29,12 @@
 #define NO_MUSIC_MODE
 #define LAYER_STATE_16BIT
 
+
+#ifdef VIA_ENABLE
+    #define LAYER_STATE_8BIT
+    #define DYNAMIC_KEYMAP_LAYER_COUNT 6
+#endif
+
 #define TAPPING_TOGGLE 2
 
 // Inertia mouse keys
