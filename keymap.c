@@ -1,4 +1,6 @@
 #include QMK_KEYBOARD_H
+#include "keymap_danish.h"
+#include "sendstring_danish.h"
 
 #ifdef BONGOCAT_ENABLE
     #include <bongocat.h>
@@ -41,6 +43,9 @@ enum layers {
 
 /* MT(MOD_RALT, KC_ESC) */
 
+enum custom_keycodes {
+    SS_ARROW_FUNC = SAFE_RANGE,
+};
 
 enum combo_events {
   COMBO_NUMPAD,
@@ -58,6 +63,17 @@ combo_t key_combos[] = {
 };
 
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case SS_ARROW_FUNC:
+            if (record->event.pressed) {
+                SEND_STRING("=>");
+            }
+            return false;
+    }
+
+    return true;
+}
 
 
 
@@ -209,13 +225,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
     [_SYM_ALT] = LAYOUT(
-        KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,                                                                              KC_TRNS        ,  KC_TRNS        ,  KC_TRNS       ,  KC_QUOT        ,  KC_TRNS             ,  KC_DEL  ,  
-        KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,                                                                              RALT(KC_NUBS)  ,  LSFT(KC_NUHS)  ,  RALT(KC_EQL)  ,  RALT(KC_RBRC)  ,  KC_TRNS             ,  KC_TRNS  ,  
-        KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,                              KC_TRNS  ,  KC_TRNS  ,  KC_NUBS        ,  LSFT(KC_NUBS)  ,  LSFT(KC_7)    ,  LSFT(KC_0)     ,  KC_NONUS_BACKSLASH  ,  KC_TRNS  ,  
+        KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,                                                                              KC_TRNS        ,  KC_TRNS        ,  KC_TRNS       ,  KC_QUOT        ,  KC_TRNS        ,  KC_DEL  ,  
+        KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,                                                                              RALT(KC_NUBS)  ,  LSFT(KC_NUHS)  ,  RALT(KC_EQL)  ,  RALT(KC_RBRC)  ,  KC_TRNS        ,  KC_TRNS  ,  
+        KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,                              KC_TRNS  ,  KC_TRNS  ,  KC_NUBS        ,  LSFT(KC_NUBS)  ,  LSFT(KC_7)    ,  LSFT(KC_0)     ,  SS_ARROW_FUNC  ,  KC_TRNS  ,  
                                             KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,  KC_TRNS  ,                              KC_TRNS  ,  KC_TRNS  ,  KC_TRNS        ,  KC_TRNS        ,  KC_TRNS
     )
 };
-
 
 
 
