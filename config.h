@@ -30,7 +30,7 @@
 #define LAYER_STATE_16BIT
 
 #ifdef TAP_DANCE_ENABLE
-    #define TAPPING_TERM 150
+    #define TAPPING_TERM 120
 #endif
 
 #ifdef VIA_ENABLE
