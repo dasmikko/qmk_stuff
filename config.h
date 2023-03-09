@@ -29,6 +29,9 @@
 #define NO_MUSIC_MODE
 #define LAYER_STATE_16BIT
 
+#ifdef TAP_DANCE_ENABLE
+    #define TAPPING_TERM 150
+#endif
 
 #ifdef VIA_ENABLE
     #define LAYER_STATE_8BIT

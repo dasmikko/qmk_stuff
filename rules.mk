@@ -1,7 +1,7 @@
 BOOTLOADER = caterina
 
-VIA_ENABLE = yes
-TAP_DANCE_ENABLE = no
+VIA_ENABLE = no
+TAP_DANCE_ENABLE = yes
 COMBO_ENABLE = yes
 
 RAW_ENABLE = yes
