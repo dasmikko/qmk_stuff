@@ -1,4 +1,4 @@
-# dasmikko's Kyria Keymap
+# rekna's Kyria rev2 Keymap
 
 ![Preview of the keymap](https://github.com/dasmikko/qmk_stuff/blob/main/images/kyria.png?raw=true)
 
