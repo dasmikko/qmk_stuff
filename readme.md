@@ -1,7 +1,5 @@
 # rekna's Kyria rev2 Keymap
 
-![Preview of the keymap](https://github.com/dasmikko/qmk_stuff/blob/main/images/kyria.png?raw=true)
-
 The keymap is a pretty basic, no crazy tap-dance mods or alike. It is very beginner friendly, and feel free to use it as a base.
 
 It uses Danish layout, so it includes ÆØÅ.
