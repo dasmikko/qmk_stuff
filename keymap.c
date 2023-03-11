@@ -23,7 +23,7 @@ enum layers {
 #define GAMING   DF(_GAMING)
 #define DVORAK   DF(_DVORAK)
 
-#define SYM      TT(_SYM)
+#define SYM      MO(_SYM)
 #define SYM_ALT  MO(_SYM_ALT)
 #define NAV      MO(_NAV)
 #define FKEYS    MO(_FUNCTION)
@@ -35,6 +35,18 @@ enum layers {
 #define CTL_QUOT MT(MOD_RCTL, KC_QUOTE)
 #define CTL_MINS MT(MOD_RCTL, KC_MINUS)
 #define ALT_ENT  MT(MOD_LALT, KC_ENT)
+
+// Left-hand home row mods
+#define HOME_A LCTL_T(KC_A)
+#define HOME_S LSFT_T(KC_S)
+#define HOME_D LALT_T(KC_D)
+#define HOME_F LGUI_T(KC_F)
+
+// Right-hand home row mods
+#define HOME_J RGUI_T(KC_J)
+#define HOME_K LALT_T(KC_K)
+#define HOME_L LSFT_T(KC_L)
+#define HOME_NUHS RCTL_T(KC_NUHS)
 
 
 // Note: LAlt/Enter (ALT_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
@@ -104,27 +116,21 @@ void tap_dance_tap_hold_reset(tap_dance_state_t *state, void *user_data) {
 
 // Tap Dance declarations
 enum {
-    CT_E_AE,
-    TD_A_AA,
-    TD_E_AE,
-    TD_O_OE,
     TD_PAREN,
     TD_BRACKET,
     TD_SQPAREN,
     TD_SLASH,
     TD_TAB_ESCAPE,
+    TD_BSPC_DW,
 };
 
 // Tap Dance definitions
 tap_dance_action_t tap_dance_actions[] = {
-    // Tap once for Escape, twice for Caps Lock
-    [TD_A_AA]        = ACTION_TAP_DANCE_TAP_HOLD(KC_A, KC_LBRC),
-    [TD_E_AE]        = ACTION_TAP_DANCE_TAP_HOLD(KC_E, KC_SCLN),
-    [TD_O_OE]        = ACTION_TAP_DANCE_TAP_HOLD(KC_O, KC_QUOT),
-    [TD_PAREN]       = ACTION_TAP_DANCE_TAP_HOLD(LSFT(KC_8), LSFT(KC_9)),
-    [TD_SQPAREN]     = ACTION_TAP_DANCE_TAP_HOLD(RALT(KC_8), RALT(KC_9)),
-    [TD_BRACKET]     = ACTION_TAP_DANCE_TAP_HOLD(RALT(KC_7), RALT(KC_0)),
-    [TD_SLASH]       = ACTION_TAP_DANCE_TAP_HOLD(LSFT(KC_7), RALT(KC_NUBS)),
+    [TD_PAREN]       = ACTION_TAP_DANCE_DOUBLE(LSFT(KC_8), LSFT(KC_9)),
+    [TD_SQPAREN]     = ACTION_TAP_DANCE_DOUBLE(RALT(KC_8), RALT(KC_9)),
+    [TD_BRACKET]     = ACTION_TAP_DANCE_DOUBLE(RALT(KC_7), RALT(KC_0)),
+    [TD_SLASH]       = ACTION_TAP_DANCE_DOUBLE(LSFT(KC_7), RALT(KC_NUBS)),
+    [TD_BSPC_DW]     = ACTION_TAP_DANCE_TAP_HOLD(KC_BSPC, LCTL(KC_BSPC)),
     [TD_TAB_ESCAPE]  = ACTION_TAP_DANCE_TAP_HOLD(KC_TAB, KC_ESC),
 };
 
@@ -132,11 +138,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     tap_dance_action_t *action;
 
     switch (keycode) {
-        case TD(TD_SLASH):
         case TD(TD_TAB_ESCAPE):
-        case TD(TD_PAREN): 
-        case TD(TD_SQPAREN): 
-        case TD(TD_BRACKET): // list all tap dance keycodes with tap-hold configurations
+        case TD(TD_BSPC_DW):
+        // list all tap dance keycodes with tap-hold configurations
             action = &tap_dance_actions[TD_INDEX(keycode)];
             if (!record->event.pressed && action->state.count && !action->state.finished) {
                 tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
@@ -163,9 +167,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                         `---------------------------------------'      `----------------------------------'
  */
 	[_QWERTY] = LAYOUT(
-        TD(TD_TAB_ESCAPE)  ,  KC_Q  ,  KC_W  ,  KC_E     ,  KC_R     ,  KC_T          ,                                                                                               KC_Y     ,  KC_U     ,  KC_I     ,  KC_O   ,  KC_P     ,  KC_BSPC, 
-        KC_LSFT            ,  KC_A  ,  KC_S  ,  KC_D     ,  KC_F     ,  KC_G          ,                                                                                               KC_H     ,  KC_J     ,  KC_K     ,  KC_L   ,  KC_NUHS  ,  KC_ENT, 
-        KC_LCTL            ,  KC_Z  ,  KC_X  ,  KC_C     ,  KC_V     ,  KC_B          ,  KC_LEFT   ,  KC_RGHT   ,                                 MT(MOD_RALT, KC_ESC)  ,  KC_UP   ,  KC_N     ,  KC_M     ,  KC_COMM  ,  KC_DOT ,  KC_SLSH  ,  MT(MOD_RSFT, KC_RCTL), 
+        TD(TD_TAB_ESCAPE)  ,  KC_Q  ,  KC_W  ,  KC_E     ,  KC_R     ,  KC_T          ,                                                                                               KC_Y     ,  KC_U     ,  KC_I     ,  KC_O    ,  KC_P       ,  TD(TD_BSPC_DW), 
+        KC_LSFT            ,  KC_A  ,  KC_S  ,  KC_D     ,  KC_F     ,  KC_G          ,                                                                                               KC_H     ,  KC_J     ,  KC_K     ,  KC_L    ,  HOME_NUHS  ,  MT(MOD_RSFT, KC_ENT), 
+        KC_LCTL            ,  KC_Z  ,  KC_X  ,  KC_C     ,  KC_V     ,  KC_B          ,  KC_LEFT   ,  KC_RGHT   ,                                 MT(MOD_RALT, KC_ESC)  ,  KC_UP   ,  KC_N     ,  KC_M     ,  KC_COMM  ,  KC_DOT  ,  KC_SLSH    ,  KC_RCTL, 
                                                 KC_LGUI  ,  KC_LALT  ,  MO(_SYM_ALT)  ,  KC_SPC    ,  NAV       ,                                 SYM                   ,  KC_DOWN ,  KC_ESC   ,  TGAMING  ,  TFKEYS
     ),
 /*

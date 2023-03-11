@@ -24,14 +24,15 @@
 #    define RGBLIGHT_LIMIT_VAL 150
 #endif
 
-// Lets you roll mod-tap keys
-#define IGNORE_MOD_TAP_INTERRUPT
 #define NO_MUSIC_MODE
 #define LAYER_STATE_16BIT
 
 #ifdef TAP_DANCE_ENABLE
-    #define TAPPING_TERM 120
+    #define TAPPING_TERM 175
 #endif
+
+// Prevent normal rollover on alphas from accidentally triggering mods.
+#define IGNORE_MOD_TAP_INTERRUPT
 
 #ifdef VIA_ENABLE
     #define LAYER_STATE_8BIT
