@@ -251,8 +251,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
     [_SYM] = LAYOUT(
-        KC_GRV   ,  KC_1        ,  KC_2        ,  KC_3        ,  KC_4        ,  KC_5  ,                                                                                                       KC_6         ,  KC_7        ,  KC_8        ,  KC_9        ,  KC_0     ,  KC_MINS  , 
-        KC_LSFT  ,  LSFT(KC_1)  ,  LSFT(KC_2)  ,  LSFT(KC_3)  ,  LSFT(KC_4)  ,  LSFT(KC_7)  ,                                                                                                 LSFT(KC_8)   ,  LSFT(KC_9)  ,  KC_EQL      ,  KC_RBRC     ,  KC_NUHS  ,  KC_TRNS  , 
+        KC_GRV   ,  KC_1        ,  KC_2        ,  KC_3        ,  KC_4        ,  KC_5        ,                                                                                                      KC_6         ,  KC_7        ,  KC_8        ,  KC_9        ,  KC_0     ,  KC_MINS  , 
+        KC_LSFT  ,  LSFT(KC_1)  ,  LSFT(KC_2)  ,  LSFT(KC_3)  ,  LSFT(KC_4)  ,  LSFT(KC_7)  ,                                                                                                      LSFT(KC_8)   ,  LSFT(KC_9)  ,  KC_EQL      ,  KC_RBRC     ,  KC_NUHS  ,  KC_TRNS  , 
         KC_LSFT  ,  KC_NUBS     ,  RALT(KC_2)  ,  RALT(KC_3)  ,  RALT(KC_4)  ,  LSFT(KC_6)  ,  RALT(KC_NUBS)  ,  RALT(KC_EQL)  ,                                           KC_TRNS  ,  KC_RCBR  ,  RALT(KC_7)   ,  RALT(KC_0)  ,  RALT(KC_8)  ,  RALT(KC_9)  ,  KC_SLSH  ,  KC_TRNS  ,  
                                                   KC_TRNS     ,  KC_TRNS     ,  KC_TRNS     ,  KC_TRNS        ,  KC_TRNS       ,                                           KC_TRNS  ,  KC_TRNS  ,  KC_TRNS      ,  KC_RALT     ,  KC_TRNS
     ),
