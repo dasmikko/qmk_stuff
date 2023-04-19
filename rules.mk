@@ -1,4 +1,4 @@
-BOOTLOADER = caterina
+CONVERT_TO=rp2040_ce
 
 VIA_ENABLE = no
 TAP_DANCE_ENABLE = yes

@@ -19,6 +19,10 @@ Tap the reset button once while plugged in.
 
 Firmware should be flashed now.
 
+If you just want to build the hex or uf2 file, run: 
+
+`./util/docker_build.sh splitkb/kyria/rev2:rekna:hex`
+
 ## Features
 The keymap contains code for showing a funny little animated bongocat, that shows you your current WPM.
 You can enable it in the `config.h` file.
