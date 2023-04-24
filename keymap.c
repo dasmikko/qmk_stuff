@@ -1,9 +1,10 @@
 #include QMK_KEYBOARD_H
 #include "keymap_danish.h"
 #include "sendstring_danish.h"
+#include "stdio.h"
 
 #ifdef BONGOCAT_ENABLE
-    #include <bongocat.h>
+    #include <bongo.h>
 #endif
 
 enum layers {
@@ -374,7 +375,8 @@ bool oled_task_user(void) {
         oled_write_P(led_usb_state.caps_lock   ? PSTR("CAPLCK ") : PSTR("       "), false);	
     } else {
         #ifdef BONGOCAT_ENABLE
-            render_bongocat();  // renders bongocat
+            //render_bongocat();  // renders bongocat
+            draw_bongo(false);
         #else
             
             // clang-format off
