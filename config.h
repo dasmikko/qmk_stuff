@@ -23,6 +23,7 @@
 #    define RGBLIGHT_VAL_STEP  8
 #endif
 
+
 #define NO_MUSIC_MODE
 #define LAYER_STATE_16BIT
 
@@ -34,8 +35,8 @@
 #define IGNORE_MOD_TAP_INTERRUPT
 
 #ifdef VIA_ENABLE
-    #define LAYER_STATE_8BIT
-    #define DYNAMIC_KEYMAP_LAYER_COUNT 6
+    //#define LAYER_STATE_8BIT
+    #define DYNAMIC_KEYMAP_LAYER_COUNT 9
 #endif
 
 #define TAPPING_TOGGLE 2
