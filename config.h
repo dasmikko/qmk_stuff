@@ -88,3 +88,6 @@
 
 
 #define SPLIT_WPM_ENABLE
+
+
+#define I2C1_CLOCK_SPEED  1000000
