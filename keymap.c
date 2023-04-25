@@ -3,6 +3,7 @@
 #include "sendstring_danish.h"
 #include "stdio.h"
 
+
 #ifdef BONGOCAT_ENABLE
     #include <bongo.h>
 #endif
@@ -310,6 +311,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+
+void keyboard_pre_init_user(void) {
+  // Set our LED pin as output
+  setPinOutput(24);
+  // Turn the LED off
+  // (Due to technical reasons, high is off and low is on)
+  writePinHigh(24);
+}
 
 
 

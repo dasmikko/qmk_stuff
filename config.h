@@ -90,6 +90,6 @@
 
 #define SPLIT_WPM_ENABLE
 #define SPLIT_TRANSPORT_MIRROR
-
+    
 
 #define I2C1_CLOCK_SPEED  1000000
