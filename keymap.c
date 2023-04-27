@@ -2,6 +2,7 @@
 #include "keymap_danish.h"
 #include "sendstring_danish.h"
 #include "stdio.h"
+#include "os_detection.h"
 
 
 #ifdef BONGOCAT_ENABLE
@@ -327,26 +328,55 @@ void keyboard_pre_init_user(void) {
 bool oled_task_user(void) { 
     if (is_keyboard_master()) {
         
-        static const char PROGMEM raw_logo[] = {
+        /*static const char PROGMEM raw_logo[] = {
             0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,128,128,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,128,192,192,  0,  0,  0,  0,  0,  0,128,128,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,128,128,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 12, 12,252,252, 12, 12,  0,252,252, 56, 56,252,252,  0,  0,  0,  0,  0,  0,  0,
             0,  0,  0,  0,240,240,224,224,112,112, 48, 48, 48,  0,192,224,240,240,176,176,176,240,240,  0,  0,  0,255,255,255,192,224,224,224, 96, 96,  0,  0,  0,248,255, 31, 15, 63,120,240,192,128,  0,255,255,  0,128,192,192,224, 96, 96, 96, 96,224,128,128,  0,  0,  0,  0,  0,  0,  0,  0,255,255,127,112, 48,112,240,224,192,  0,  0,192,192,224,240,112,240,240,192,128,  0,  0,  0,128,128,192, 64, 96, 96,224,128,  0,  0,  0,192,192,128,128,192,192,192,  0,  0,128,128,128,192,192,254,254,248,  0,  0,  0,  0,  0,  0,  0, 
             0,  0,  0,  0, 63, 63,  3,  0,  0,  0,  0,  0,  0,  0,  7, 15, 31, 59, 57, 49, 49, 49, 49, 48, 56, 56,  1, 31, 31,  3,  7,  7, 14, 14, 12, 28, 28,  0,  7, 63, 60,  0,  0,  0,  0,  3, 15, 31, 31,  1,  0, 15, 15, 13, 12, 12, 12, 12, 12, 15, 15, 15, 30, 28, 24, 24, 24, 24,  0,  0, 31, 31, 24, 24, 24, 28, 30, 15,  7,  0, 31, 63, 57, 48, 48, 48, 56, 56, 31, 31,  0, 14, 31, 31, 27, 24, 24, 24, 12, 15, 31, 28,  0,  0, 31, 31,  3,  3,  1,  1,  0, 28, 63, 63, 51, 49, 49, 56, 60, 31, 31, 60, 56, 48, 48,  0,  0,  0,
+        };*/
+
+        /*static const char PROGMEM qmk_logo[] = {
+            0x99, 0x9A, 0x9E, 0x9E, 0x9E, 0x9E, 0x9E, 0x9E, 0x9E, 0x9E, 0x9E, 0x9E, 0x9E, 0x9E, 0x9E, 0x9E, 0x9E, 0x9E, 0x9E, 0x9E, 0x9E,
+            0xB9, 0xBA
+        };*/
+
+        static const char PROGMEM logo[][2][3] = {
+            {{0x97, 0x98, 0}, {0xb7, 0xb8, 0}},
+            {{0x99, 0x9A, 0}, {0xb9, 0xBA, 0}},
         };
-        oled_write_raw_P(raw_logo, sizeof(raw_logo));
-        oled_set_cursor(0, 4);
+
+        int currentOS = detected_host_os();
+
+        // Show OS if detected
+        if (currentOS != OS_UNSURE) {
+            oled_set_cursor(0, 2);
+            if (currentOS == OS_LINUX) {
+                oled_write_P(PSTR("OS: Linux"), false);
+
+                oled_set_cursor(0, 3);
+                oled_write_P(logo[1][0], false);
+                oled_set_cursor(0, 4);
+                oled_write_P(logo[1][1], false);
+            }
+
+            if (currentOS == OS_WINDOWS) {
+                oled_write_P(PSTR("OS: Windows"), false);
+            }
+        }
+        
+
+        oled_set_cursor(2, 5);
+        oled_write_P(PSTR("rekNa"), false);
+        
+
+        
+        //oled_write_raw_P(raw_logo, sizeof(raw_logo));
+        oled_set_cursor(0, 0);
     
         
-                                    // sets cursor to (row, column) using charactar spacing (5 rows on 128x32 screen, anything more will overflow back to the top)
+        // sets cursor to (row, column) using charactar spacing (5 rows on 128x32 screen, anything more will overflow back to the top)
         //sprintf(wpm_str, "WPM:%03d", get_current_wpm());  // edit the string to change wwhat shows up, edit %03d to change how many digits show up
         //oled_write(wpm_str, false);                       // writes wpm on top left corner of string
-        oled_write_P(PSTR("WPM: "), false);
-        oled_write(get_u8_str(get_current_wpm(), '0'), false);
 
-        #ifdef BONGOCAT_ENABLE
-            oled_set_cursor(0, 5);
-        #else
-            oled_set_cursor(0, 5);
-        #endif
         // Host Keyboard Layer Status
         oled_write_P(PSTR("Layer: "), false);
         switch (get_highest_layer(layer_state|default_layer_state)) {
