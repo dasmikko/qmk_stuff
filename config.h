@@ -32,7 +32,7 @@
 #endif
 
 // Prevent normal rollover on alphas from accidentally triggering mods.
-#define IGNORE_MOD_TAP_INTERRUPT
+//#define IGNORE_MOD_TAP_INTERRUPT
 
 #ifdef VIA_ENABLE
     //#define LAYER_STATE_8BIT
