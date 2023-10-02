@@ -1,6 +1,6 @@
 CONVERT_TO=rp2040_ce
 
-VIA_ENABLE = yes
+VIA_ENABLE = no
 TAP_DANCE_ENABLE = yes
 COMBO_ENABLE = yes
 
