@@ -23,7 +23,7 @@
 #    define RGBLIGHT_VAL_STEP  8
 #endif
 
-#define DEBOUNCE 15
+#define DEBOUNCE 18
 
 #define NO_MUSIC_MODE
 #define LAYER_STATE_16BIT
